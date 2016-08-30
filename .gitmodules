@@ -1,0 +1,3 @@
+[submodule "libs/qsmfptr"]
+	path = libs/qsmfptr
+	url = ssh://git@git.shtrih-m.ru:222/amednyy/qsmfptr.git
