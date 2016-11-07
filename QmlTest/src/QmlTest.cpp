@@ -28,25 +28,35 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifdef QT_QML_DEBUG
-#include <QtQuick>
-#endif
 
+#include <QFile>
+#include <QTranslator>
+#include <QGuiApplication>
 #include <sailfishapp.h>
 #include <src/printertest.h>
 
 int main(int argc, char *argv[])
 {
-    // SailfishApp::main() will display "qml/template.qml", if you need more
-    // control over initialization, you can use:
-    //
-    //   - SailfishApp::application(int, char *[]) to get the QGuiApplication *
-    //   - SailfishApp::createView() to get a new QQuickView * instance
-    //   - SailfishApp::pathTo(QString) to get a QUrl to a resource file
-    //
-    // To display the view, call "show()" (will show fullscreen on device).
+    QGuiApplication* app = SailfishApp::application(argc, argv);
+
+    QString fileName = ":/translations/translations/QmlTest.qm";
+    QFile file(fileName);
+    if (!file.exists()){
+        qDebug() << "File not exists, " << fileName;
+    }
+
+    QTranslator translator;
+    if (!translator.load(fileName)){
+        qDebug() << "Failed to load translation file, " << fileName;
+    }
+    if (!app->installTranslator(&translator)){
+        qDebug() << "Failed to install translation";
+    }
+
+
     PrinterTest test;
     test.execute();
-    return SailfishApp::main(argc, argv);
+    //return SailfishApp::main(argc, argv);
+    return 0;
 }
 

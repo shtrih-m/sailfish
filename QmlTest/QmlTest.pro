@@ -14,7 +14,10 @@ TARGET = QmlTest
 
 CONFIG += sailfishapp
 QT += bluetooth
-SOURCES += src/QmlTest.cpp
+QT += core
+
+SOURCES += \
+    src/QmlTest.cpp
 
 OTHER_FILES += qml/QmlTest.qml \
     qml/cover/CoverPage.qml \
@@ -45,3 +48,6 @@ INCLUDEPATH += $$PWD/../libs/qsmfptr
 DEPENDPATH += $$PWD/../libs/qsmfptr
 
 unix:!macx: PRE_TARGETDEPS += $$OUT_PWD/../libs/qsmfptr/libqsmfptr.a
+
+RESOURCES += \
+    qmltest.qrc
