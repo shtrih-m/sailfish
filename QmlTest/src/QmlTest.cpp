@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
 {
     QGuiApplication* app = SailfishApp::application(argc, argv);
 
+    /*
     QString fileName = ":/translations/translations/QmlTest.qm";
     QFile file(fileName);
     if (!file.exists()){
@@ -52,7 +53,7 @@ int main(int argc, char *argv[])
     if (!app->installTranslator(&translator)){
         qDebug() << "Failed to install translation";
     }
-
+    */
 
     PrinterTest test;
     test.execute();
